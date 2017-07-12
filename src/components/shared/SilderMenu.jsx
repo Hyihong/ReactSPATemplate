@@ -14,10 +14,6 @@ const { Item, SubMenu } = Menu;
 export const stateKey = 'silderMenu';
 
 class SilderMenu extends React.Component{
-     constructor(props){
-        super(props)
-    }
-
     componentWillMount(){
         const {location,onInitializeMenu} = this.props;
         const initCurrent = location.pathname ;
@@ -77,6 +73,7 @@ class SilderMenu extends React.Component{
                 <SubMenu key ='ui' title= { <div><Icon type="laptop" /><span>UI</span></div>}>
                     <Item key="/ui/counter"><Link to="/ui/counter"><Icon type="exception" />计数器</Link></Item>
                     <Item key="/ui/about"><Link to="/ui/about"><Icon type="heart" />关于</Link></Item>
+                    <Item key="/ui/weather"><Link to="/ui/weather"><Icon type="heart" />天气查询</Link></Item>
                 </SubMenu>
                 <SubMenu key ='other' title= { <div><Icon type="laptop" /><span>其他</span></div>}>
                     <Item key="/other/other1"><Link to="/other/other1">计数器</Link></Item>

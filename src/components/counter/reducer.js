@@ -1,5 +1,5 @@
 import {INCREMENT, DECREMENT} from './actionTypes.js';
-export default (state = {}, action) => {
+export default (state = 100, action) => {
 switch (action.type) {
     case INCREMENT:
         return state + 1;

@@ -2,6 +2,10 @@ import React,{Component} from 'react' ;
 import {connect } from 'react-redux'
 import { fetchWeather } from './action'
 
+//antd
+import { Select } from 'antd';
+const Option = Select.Option;
+
 
 const CITY_CODES = {
   'beijing': 101010100,
@@ -17,20 +21,20 @@ class selectCity extends Component {
          fetchWeather(CITY_CODES.beijing)
      }
 
-     handleChange = (e) =>{
-         const cityCode = e.target.value ;
+     handleChange = (value) =>{
+         const cityCode = value ;
          this.props.fetchWeather( CITY_CODES[cityCode] )
      }
      
      render(){
          return(
              <div>
-             <select onChange={ this.handleChange }>
-                 <option value="beijing">北京</option>
-                 <option value="shanghai">上海</option>
-                 <option value="guangzhou">广州</option>
-                 <option value="shenzhen">深圳</option>
-             </select>
+             <Select defaultValue="beijing" style={{ width: 120 }} onChange={ this.handleChange }>
+                 <Option value="beijing">北京</Option>
+                 <Option value="shanghai">上海</Option>
+                 <Option value="guangzhou">广州</Option>
+                 <Option value="shenzhen">深圳</Option>
+             </Select>
              </div>
          )
      }

@@ -1,24 +1,25 @@
 import React,{Component} from 'react' ;
-import {connect } from 'react-redux'
+import {connect } from 'react-redux';
+import { Card } from 'antd';
 
 class Weather extends Component {
      render(){
          const {status,cityName,weather,lowestTemp,highestTemp} = this.props;
          switch (status){
              case 'loading' :{
-                 return <div>天气信息请求中...</div>
+                 return <Card>天气信息请求中...</Card>
              }
              case 'sucess' :{
                  return (
-                     <div>
+                     <Card>
                          {cityName}{weather}：
                          最高温度：{highestTemp}，
                          最低温度：{lowestTemp}
-                     </div>
+                     </Card>
                  )
              }
              case 'failure' : {
-                 return <div>获取天气失败...</div>
+                 return <Card>获取天气失败...</Card>
              }
              default :{
                   throw new Error('未知错误'+ status)

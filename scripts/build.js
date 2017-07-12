@@ -39,6 +39,8 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
 
+console.log( paths )
+
 // First, read the current file sizes in build directory.
 // This lets us display how much they changed later.
 measureFileSizesBeforeBuild(paths.appBuild)
@@ -49,6 +51,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
     // Merge with the public folder
     copyPublicFolder();
     // Start the webpack build
+    console.log("退出进程")
+    process.exit()
     return build(previousFileSizes);
   })
   .then(
@@ -99,7 +103,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
     }
   );
 
-// Create the production build and print the deployment instructions.
+// Create the production build and print the deployment instructions.创建构建并打印部署生产指令
 function build(previousFileSizes) {
   console.log('Creating an optimized production build...');
 

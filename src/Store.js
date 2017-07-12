@@ -1,21 +1,25 @@
-import {createStore, combineReducers, compose  } from 'redux';
+import {createStore, combineReducers, compose,  applyMiddleware} from 'redux';
 import { routerReducer } from 'react-router-redux'
 import { reducer as sharedReducer } from './components/shared'
-import resetEnhancer from './middleWare/reset.js'
+import { reducer as weatherReducer } from './components/weather'
+import { reducer as counterReducer } from './components/counter'
+import resetEnhancer from './middleWare/reset.js' 
+import promise from './middleWare/promise' //中间件
 
 const win = window;
 
 const originalReducers = {
     routing: routerReducer,
-    shared: sharedReducer
+    shared: sharedReducer,
+    weather: weatherReducer,
+    counter: counterReducer,
 }
 
 const reducer =  combineReducers(originalReducers)
-
-// Build the middleware for intercepting and dispatching navigation actions
-//const middleware = routerMiddleware( createHistory())
+const middleWare = [promise]
 
 const storeEnhancers = compose(
+  applyMiddleware(...middleWare),
   resetEnhancer,
   (win && win.devToolsExtension) ? win.devToolsExtension() : f => f
 );

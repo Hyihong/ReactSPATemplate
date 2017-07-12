@@ -12,6 +12,9 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const pkg = require("../package.json");
+
+
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -43,6 +46,19 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
+
+//读取package.json中的theme字段,如果是string类型，读取配置文件。如果是object类型，则作为参数传给modifyVar
+ let theme = {};
+  if (pkg.theme && typeof(pkg.theme) === 'string') {
+    let cfgPath = pkg.theme;
+    // relative path
+    if (cfgPath.charAt(0) === '.') {
+       cfgPath = path.resolve(cfgPath);
+    }
+    theme = require(cfgPath);
+  } else if (pkg.theme && typeof(pkg.theme) === 'object') {
+    theme = pkg.theme;
+}
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -235,7 +251,11 @@ module.exports = {
             }, {
                 loader: "css-loader" // translates CSS into CommonJS
             }, {
-                loader: "less-loader" // compiles Less to CSS
+                loader: "less-loader", // compiles Less to CSS
+                options:{
+                    sourceMap: true,
+                    modifyVars:theme
+                }
             }]
         },
     ],
