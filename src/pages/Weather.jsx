@@ -1,13 +1,16 @@
 import React from 'react';
 
 import {Weatherview as Weather, SelectCityView as SelectCity,stateKey, reducer} from '../components/weather';
+//import { Layout,TimePicker,Button } from 'antd';
 
-const WeatherPage = () => {
+const WeatherPage = ({location}) => {
+console.log(location)
 return (
 <div>
    <div>通过中国天气网提供的API进行天气查询</div>
        <SelectCity></SelectCity>
        <Weather></Weather>
+       
   </div>
 );
 };

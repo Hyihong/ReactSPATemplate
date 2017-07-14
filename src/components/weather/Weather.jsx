@@ -3,6 +3,8 @@ import {connect } from 'react-redux';
 import { Card } from 'antd';
 
 class Weather extends Component {
+     componentDidMount(){
+     }
      render(){
          const {status,cityName,weather,lowestTemp,highestTemp} = this.props;
          switch (status){

@@ -80,6 +80,7 @@ const Routes = () => (
                 <Route path="/ui/about" component={About} />
                 <Route path="/ui/counter" component={Counter} />
                 <Route path="/ui/weather" component={Weather} />
+                <Route path="/ui/article" component={Weather} />
                 <Route component={NotFonund} />
              </Switch>
             

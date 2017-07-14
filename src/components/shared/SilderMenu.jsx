@@ -57,6 +57,12 @@ class SilderMenu extends React.Component{
     render(){
         const {current, openKeys } = this.props;
         
+        let weatherLocation = {
+             pathname: '/ui/weather',
+             search: '?some=id',
+             hash: '#howdy'
+        }
+        
         
         return(
             <div  style={{width:"180px",height:"100%",background:"#404040",flexShrink:'0'}}>
@@ -73,7 +79,8 @@ class SilderMenu extends React.Component{
                 <SubMenu key ='ui' title= { <div><Icon type="laptop" /><span>UI</span></div>}>
                     <Item key="/ui/counter"><Link to="/ui/counter"><Icon type="exception" />计数器</Link></Item>
                     <Item key="/ui/about"><Link to="/ui/about"><Icon type="heart" />关于</Link></Item>
-                    <Item key="/ui/weather"><Link to="/ui/weather"><Icon type="heart" />天气查询</Link></Item>
+                    <Item key="/ui/weather"><Link to="/ui/weather" ><Icon type="heart" />天气查询</Link></Item>
+                    <Item key="/ui/article"><Link to="/ui/article" ><Icon type="heart" />文章列表</Link></Item>
                 </SubMenu>
                 <SubMenu key ='other' title= { <div><Icon type="laptop" /><span>其他</span></div>}>
                     <Item key="/other/other1"><Link to="/other/other1">计数器</Link></Item>

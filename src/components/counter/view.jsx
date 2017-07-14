@@ -3,15 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux'
 import { increment,decrement} from './actions'
+import { Button } from 'antd';
 
 export const stateKey = 'counter';
 
 function Counter({onIncrement, onDecrement, value}) {
 return (
     <div>
-            <button  onClick={onIncrement}>+</button>
+            <Button  onClick={onIncrement}>+</Button>
             <span>Count: {value}</span>
-            <button  onClick={onDecrement}>-</button>
+            <Button  onClick={onDecrement}>-</Button>
     </div>
 );
 }
