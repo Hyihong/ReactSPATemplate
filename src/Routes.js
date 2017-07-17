@@ -7,6 +7,7 @@ import Bundle from './Bundle'
 //同步页面
 import App from './pages/App';
 import NotFonund from './pages/404';
+import ArticlesListPage from './pages/Articles'
 import store from './Store'
 
 
@@ -70,20 +71,21 @@ const Weather = (props) => (
     </Bundle>
 )
 
+
+
 const Routes = () => (
    <Router >
         <div>
           <App>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/home" component={Home} />
-                <Route path="/ui/about" component={About} />
-                <Route path="/ui/counter" component={Counter} />
-                <Route path="/ui/weather" component={Weather} />
-                <Route path="/ui/article" component={Weather} />
-                <Route component={NotFonund} />
-             </Switch>
-            
+               <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route  path="/home" component={Home} />
+                    <Route  path="/ui/about" component={About} />
+                    <Route  path="/ui/counter" component={Counter} />
+                    <Route  path="/ui/weather" component={Weather} />
+                    <Route  exact path="/ui/articles" component={ArticlesListPage} />
+                    <Route component={NotFonund} />
+                </Switch>
           </App>
           
         </div>

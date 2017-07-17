@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux'
 import { reducer as sharedReducer } from './components/shared'
 import { reducer as weatherReducer } from './components/weather'
 import { reducer as counterReducer } from './components/counter'
+import { reducer as articlesReducer } from './components/articles'
 import resetEnhancer from './middleWare/reset.js' 
 import promise from './middleWare/promise' //中间件
 
@@ -13,6 +14,7 @@ const originalReducers = {
     shared: sharedReducer,
     weather: weatherReducer,
     counter: counterReducer,
+    articles: articlesReducer
 }
 
 const reducer =  combineReducers(originalReducers)

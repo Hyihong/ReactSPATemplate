@@ -18,8 +18,7 @@ const { Content } = Layout ;
                 <Header></Header>
                 <Layout style={{width:"100%","minWidth":"1200px",height:'100%'}} className="ant-layout-has-sider">
                     <SilderMenu current= {this.props.current}  openKeys= {this.props.openKeys}></SilderMenu>
-                    <Content style={{ padding: '10px 15px' }}>
-
+                    <Content style={{ padding: '0 5px 0 10px',margin:'10px 0 5px 0',overflow:'auto' }}>
                          {this.props.children}
                     </Content>
                 </Layout>
