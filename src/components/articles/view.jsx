@@ -2,16 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 //import { bindActionCreators} from 'redux'
-import { Link,Route} from 'react-router-dom';
+import { Link,Route,withRouter} from 'react-router-dom';
 import { fetchArticles} from './actions'
 import { Card,Spin  } from 'antd';
 import './style.css'
 
 export const stateKey = 'articles';
 
-const Article =( {match} )=>{
-    return <div>{match.params}</div>
-}
 
 class Articles extends React.Component {
     componentDidMount(){
@@ -30,21 +27,19 @@ class Articles extends React.Component {
                             articles.map( article => (
                                 <li key={article.id}>
                                     <Card title={ 
-                                                <Link to={ {
+                                                <Link to={{
                                                             pathname: `${match.url}/article`,
-                                                            //search:`?id=${i++}`
                                                         }}> 
                                                     <b style={{fontSize:'18px'}}> {article.name} </b> 
                                                 </Link>} 
-                                                style={{marginTop:'10px'
-                                    }}>
+                                                style={{marginTop:'10px'}}>
                                         <p><b>描述: </b>{ article.description }</p>
                                         <p><b>Star: </b>{ article.stargazers_count}</p>
                                     </Card>
                                 </li>
                            ))
                     }</ul>
-                    
+                      <Route  path="/ui/articles/article" component={Topic}/>
                     </div>
             case 'failure' :
                 return <div>获取失败</div>
@@ -52,6 +47,10 @@ class Articles extends React.Component {
                 return <div>未知错误</div>
         }     
     }
+}
+
+const Topic =() =>{
+    return <div>123</div>
 }
 
 const mapStateToProps = (state) => {
@@ -72,21 +71,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Articles);
-
-// articles.map( article => (
-//                                 <li key={article.id}>
-//                                     <Card title={ 
-//                                                 <Link to={ {
-//                                                             pathname: `${match.url}/article`,
-//                                                             //search:`?id=${i++}`
-//                                                         }}> 
-//                                                     <b style={{fontSize:'18px'}}> {article.name} </b> 
-//                                                 </Link>} 
-//                                                 style={{marginTop:'10px'
-//                                     }}>
-//                                         <p><b>描述: </b>{ article.description }</p>
-//                                         <p><b>Star: </b>{ article.stargazers_count}</p>
-//                                     </Card>
-//                                 </li>
-//                            ))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Articles));

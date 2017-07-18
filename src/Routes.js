@@ -10,7 +10,6 @@ import NotFonund from './pages/404';
 import ArticlesListPage from './pages/Articles'
 import store from './Store'
 
-
 //代码分割，按需加载
 const Home = (props) => (
     <Bundle  load={(cb) => {
@@ -71,8 +70,6 @@ const Weather = (props) => (
     </Bundle>
 )
 
-
-
 const Routes = () => (
    <Router >
         <div>
@@ -83,11 +80,10 @@ const Routes = () => (
                     <Route  path="/ui/about" component={About} />
                     <Route  path="/ui/counter" component={Counter} />
                     <Route  path="/ui/weather" component={Weather} />
-                    <Route  exact path="/ui/articles" component={ArticlesListPage} />
+                    <Route  path="/ui/articles" component={ArticlesListPage} />
                     <Route component={NotFonund} />
                 </Switch>
           </App>
-          
         </div>
    </Router>
 );
