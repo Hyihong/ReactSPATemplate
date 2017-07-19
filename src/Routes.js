@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router ,Route,Switch } from 'react-router-dom';
+import {Route,Switch } from 'react-router-dom';
 import { combineReducers} from 'redux';
 
 import Bundle from './Bundle'
@@ -7,7 +7,6 @@ import Bundle from './Bundle'
 //同步页面
 import App from './pages/App';
 import NotFonund from './pages/404';
-import ArticlesListPage from './pages/Articles'
 import store from './Store'
 
 //代码分割，按需加载
@@ -70,23 +69,44 @@ const Weather = (props) => (
     </Bundle>
 )
 
-const Routes = () => (
-   <Router >
-        <div>
-          <App>
-               <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route  path="/home" component={Home} />
-                    <Route  path="/ui/about" component={About} />
-                    <Route  path="/ui/counter" component={Counter} />
-                    <Route  path="/ui/weather" component={Weather} />
-                    <Route  path="/ui/articles" component={ArticlesListPage} />
-                    <Route component={NotFonund} />
-                </Switch>
-          </App>
-        </div>
-   </Router>
-);
+const Articles = (props) => (
+    <Bundle  load={(cb) => {
+        require.ensure([], require => {
+             const { ArticlesListPage,reducer, stateKey } = require('./pages/Articles.jsx');
+             const state = store.getState();
+             store.reset( combineReducers({
+                    ...store._reducers,
+                    articles: reducer
+                  }), { 
+                    ...state,
+                    [stateKey]:{status:'loading'}
+            })
+            cb(ArticlesListPage);
+        },'articles');
+    }}>
+        {(Articles) => <Articles {...props}/>}
+    </Bundle>
+)
+
+class Routes extends React.Component{ 
+    render(){
+        return(
+                <div>
+                    <App>
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route  path="/home" component={Home} />
+                            <Route  path="/ui/about" component={About} />
+                            <Route  path="/ui/counter" component={Counter} />
+                            <Route  path="/ui/weather" component={Weather} />
+                            <Route  path="/ui/articles" component={Articles} />
+                            <Route component={NotFonund} />
+                        </Switch>
+                    </App>
+                </div>
+        )
+    }
+};
 
 export default Routes;
 

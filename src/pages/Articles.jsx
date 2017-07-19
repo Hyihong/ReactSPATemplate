@@ -1,15 +1,18 @@
 import React from 'react';
-import { view as ArticalList} from '../components/articles'
+import { Articles ,stateKey, reducer} from '../components/articles'
 //import {connect} from 'react-redux';
 
 
 class ArticlesListPage extends React.Component{
+  componentWillMount(){
+     
+  }
   render(){
       return (
           <div>
-              <ArticalList></ArticalList>
+              <Articles></Articles>
           </div>
       );
   }
 };
-export default ArticlesListPage ;
+export  {ArticlesListPage,stateKey, reducer} ;
