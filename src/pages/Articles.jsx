@@ -1,5 +1,6 @@
 import React from 'react';
 import { Articles ,stateKey, reducer} from '../components/articles'
+//import App from './App'
 //import {connect} from 'react-redux';
 
 
@@ -9,8 +10,10 @@ class ArticlesListPage extends React.Component{
   }
   render(){
       return (
-          <div>
-              <Articles></Articles>
+          <div>   
+            <div>
+                <Articles></Articles>
+            </div>
           </div>
       );
   }

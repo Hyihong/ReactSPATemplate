@@ -1,12 +1,11 @@
 import React from 'react';
-import {Route,Switch } from 'react-router-dom';
+import {Route,Switch ,Redirect} from 'react-router-dom';
 import { combineReducers} from 'redux';
 
 import Bundle from './Bundle'
 
 //同步页面
 import App from './pages/App';
-import NotFonund from './pages/404';
 import store from './Store'
 
 //代码分割，按需加载
@@ -92,17 +91,18 @@ class Routes extends React.Component{
     render(){
         return(
                 <div>
-                    <App>
-                        <Switch>
-                            <Route exact path="/" component={Home} />
-                            <Route  path="/home" component={Home} />
-                            <Route  path="/ui/about" component={About} />
-                            <Route  path="/ui/counter" component={Counter} />
-                            <Route  path="/ui/weather" component={Weather} />
-                            <Route  path="/ui/articles" component={Articles} />
-                            <Route component={NotFonund} />
-                        </Switch>
-                    </App>
+                    
+                        <App>
+                            <Switch>
+                                <Route  exact path="/" component={Home} />
+                                <Route  exact path="/home" component={Home} />
+                                <Route  exact path="/ui/about" component={About} />
+                                <Route  exact path="/ui/counter" component={Counter} />
+                                <Route  exact path="/ui/weather" component={Weather} />
+                                <Route  path="/ui/articles" component={Articles} />
+                                <Redirect from='*' to='/404' />
+                            </Switch>
+                        </App>                   
                 </div>
         )
     }

@@ -2,10 +2,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 //import { bindActionCreators} from 'redux'
-import { Link,Route,withRouter} from 'react-router-dom';
+import { Link,Route,withRouter,Switch,Redirect} from 'react-router-dom';
 import { fetchArticles} from '../actions'
 import { Card,Spin  } from 'antd';
 import ArticleItem from './ArticleItem'
+import NotFonund from '../../../pages/404';
 import '../style.css'
 
 class Articles extends React.Component {
@@ -13,7 +14,9 @@ class Articles extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchArticles()
+        if(this.props.location.pathname === '/ui/articles'){
+              this.props.fetchArticles()
+        }
         
     }
 
@@ -52,7 +55,11 @@ class Articles extends React.Component {
                     return <div>未知错误</div>
             }     
         }else{
-            return <Route  exact path="/ui/articles/:id" component={ArticleItem}/>
+            return (<Switch>
+                        <Route exact path="/ui/articles/:id" component={ArticleItem}/>
+                        <Redirect from='*' to='/404' />
+                    </Switch>)
+                 
         }
     }
 }
