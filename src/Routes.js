@@ -1,14 +1,14 @@
 import React from 'react';
-import {Route,Switch ,Redirect} from 'react-router-dom';
+import {Route,Switch ,Redirect,Link} from 'react-router-dom';
 import { combineReducers} from 'redux';
 
 import Bundle from './Bundle'
 
 //同步页面
 import App from './pages/App';
-import store from './Store'
+import store from './Store';
 
-//代码分割，按需加载
+//异步页面，代码分割，按需加载
 const Home = (props) => (
     <Bundle  load={(cb) => {
         require.ensure([], require => {
@@ -71,15 +71,15 @@ const Weather = (props) => (
 const Articles = (props) => (
     <Bundle  load={(cb) => {
         require.ensure([], require => {
-             const { ArticlesListPage,reducer, stateKey } = require('./pages/Articles.jsx');
-             const state = store.getState();
-             store.reset( combineReducers({
+             const { ArticlesListPage,reducer,stateKey } = require('./pages/Articles.jsx');
+               const state = store.getState();
+               store.reset( combineReducers({
                     ...store._reducers,
                     articles: reducer
                   }), { 
                     ...state,
                     [stateKey]:{status:'loading'}
-            })
+             })   
             cb(ArticlesListPage);
         },'articles');
     }}>
@@ -88,10 +88,12 @@ const Articles = (props) => (
 )
 
 class Routes extends React.Component{ 
+    componentDidUpdate(){
+        
+    }
     render(){
         return(
                 <div>
-                    
                         <App>
                             <Switch>
                                 <Route  exact path="/" component={Home} />
@@ -99,14 +101,58 @@ class Routes extends React.Component{
                                 <Route  exact path="/ui/about" component={About} />
                                 <Route  exact path="/ui/counter" component={Counter} />
                                 <Route  exact path="/ui/weather" component={Weather} />
-                                <Route  path="/ui/articles" component={Articles} />
-                                <Redirect from='*' to='/404' />
+                                <Route  path="/ui/articles" component={Topics} />
+                                <Redirect from='*' to='/404' /> 
                             </Switch>
                         </App>                   
                 </div>
         )
     }
 };
+
+
+ class Topics extends React.Component{
+    componentWillUpdate(nextProps){
+        console.log(this.props.location)
+        console.log(nextProps.location )
+        console.log( "+++++++++++++++++++++++++" )
+    }
+      render(){ 
+        const {match} = this.props
+        return(
+  <div>
+    <h2>主题列表</h2>
+    <ul>
+      <li>
+        <Link to={`${match.url}/rendering`}>
+          使用 React 渲染
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/components`}>
+          组件
+        </Link>
+      </li>
+      <li>
+        <Link to={`${match.url}/props-v-state`}>
+          属性 v. 状态
+        </Link>
+      </li>
+    </ul>
+
+    <Route path={`${match.url}/:topicId`} component={Topic}/>
+    <Route exact path={match.url} render={() => (
+      <h3>请选择一个主题。</h3>
+    )}/>
+  </div>
+)
+      }}
+
+const Topic = ({ match }) => (
+  <div>
+    <h3>{match.params.topicId}</h3>
+  </div>
+)
 
 export default Routes;
 

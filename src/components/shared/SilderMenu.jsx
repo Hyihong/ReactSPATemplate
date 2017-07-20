@@ -80,7 +80,7 @@ class SilderMenu extends React.Component{
                     <Item key="/ui/counter"><Link to="/ui/counter"><Icon type="exception" />计数器</Link></Item>
                     <Item key="/ui/about"><Link to="/ui/about"><Icon type="heart" />关于</Link></Item>
                     <Item key="/ui/weather"><Link to="/ui/weather" ><Icon type="heart" />天气查询</Link></Item>
-                    <Item key="/ui/articles"><Link to="/ui/articles" ><Icon type="heart" />前端库排行</Link></Item>
+                    <Item key="/ui/articles"><Link to={{pathname:"/ui/articles"}} ><Icon type="heart" />前端库排行</Link></Item>
                 </SubMenu>
                 <SubMenu key ='other' title= { <div><Icon type="laptop" /><span>其他</span></div>}>
                     <Item key="/other/other1"><Link to="/other/other1">计数器</Link></Item>

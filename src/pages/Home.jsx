@@ -1,14 +1,16 @@
 import React from 'react';
-//import App from './App'
-//import {connect} from 'react-redux';
+class Home extends React.Component {
+   componentWillUpdate(nextProps) {
+      console.log(1)
+   }
 
-const Home = () => {
-  return (
-    <div>
-      <div>主页</div>
-    </div>
-
-  );
+  render(){
+    return (
+      <div > 
+          主页
+      </div>
+    );
+  }
 };
 
 export default Home;
