@@ -10,26 +10,18 @@ import '../style.css'
 
 class Articles extends React.Component {
 
-
-    componentWillMount(){
-        if( this.props.status =='loading'){
-              this.props.fetchArticles() 
+    componentDidMount(){
+        //如果页面时从详情页返回，则不刷新
+        if( this.props.previousLocation && this.props.history.action.toLocaleUpperCase()==='POP'){
+             console.log("从详情页返回,不刷新页面")
+             return; 
         }
         
-    }
-
-    componentWillUpdate(nextProps){
-        console.log(1)
-    }
-
-
-    componentDidMount(){
-                        
+        this.props.fetchArticles() 
     }
 
     render(){
         const { status,articles,match } = this.props;
-    
         switch ( status ){
             case 'loading' :
                 return <div style={{textAlign:'center',verticalAlign:'middle',height:'100%',marginTop:'100px'}}><Spin tip="正在加载，请稍后..." size="large"></Spin></div>

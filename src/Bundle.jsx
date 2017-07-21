@@ -1,7 +1,8 @@
 
-//异步加载的包装组件Bundle,Bundle的主要功能就是接收一个组件异步加载的方法，并返回相应的react组件
+//异步加载的包装组件Bundle,Bundle的主要功能就是接收一个组件异步加载的方法(load)，并返回相应的react组件
 
 import  { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 export default class Bundle extends Component {
     constructor(props) {
         super(props);
@@ -11,28 +12,30 @@ export default class Bundle extends Component {
     }
 
     componentWillMount() {
-        this.load(this.props)
+        //首次渲染
+        this.initAsync(this.props)
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.load !== this.props.load) {
-            this.load(nextProps)
+            this.initAsync(nextProps)
         }
     }
 
-    load(props) {
+    initAsync(props) {
         this.setState({
             mod: null
         });
 
-        props.load((mod) => {
-            this.setState({
-                mod: mod.default ? mod.default : mod
-            });
-        });
+        props.load(
+           (mod) => {
+                this.setState({
+                    mod: mod.default ? mod.default : mod
+                });
+           });
     }
 
     render() {
-        return this.state.mod ? this.props.children(this.state.mod) : null;
+        return this.state.mod ?   this.props.children( this.state.mod ) : null;
     }
 }
