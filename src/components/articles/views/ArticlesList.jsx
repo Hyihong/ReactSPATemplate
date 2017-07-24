@@ -12,7 +12,8 @@ class Articles extends React.Component {
 
     componentDidMount(){
         //如果页面时从详情页返回，则不刷新
-        if( this.props.previousLocation && this.props.history.action.toLocaleUpperCase()==='POP'){
+        //判断条件：1、有返回路径的属性 2、操作动作为'POP' 3、此时在store中的status不为'loading'加载状态
+        if( this.props.previousLocation && this.props.history.action.toLocaleUpperCase()==='POP' && this.props.status!=='loading'){
              console.log("从详情页返回,不刷新页面")
              return; 
         }
@@ -30,12 +31,7 @@ class Articles extends React.Component {
                         <ul>{
                             articles.map( article => (
                                 <li key={article.id}>
-                                     <Link to={{
-                                                    pathname: `${match.url}/${article.name}`,
-                                                }}> 
-                                            <b style={{fontSize:'12px'}}> {article.name} </b> 
-                                        </Link>
-                                    {/* <Card   title={ 
+                                    <Card   title={ 
                                                 <Link to={{
                                                             pathname: `${match.url}/${article.name}`,
                                                         }}> 
@@ -44,7 +40,7 @@ class Articles extends React.Component {
                                             style={{marginTop:'10px'}}>
                                          <p><b>描述: </b>{ article.description }</p>
                                         <p><b>Star: </b>{ article.stargazers_count}</p> 
-                                    </Card> */}
+                                    </Card> 
                                 </li>
                         ))
                         }</ul>

@@ -8,6 +8,7 @@ import Bundle from './Bundle'
 import App from './pages/App';
 //import { Articles }  from './pages/Articles'
 import store from './Store';
+import Address   from './pages/Address'
 
 //异步页面，代码分割，按需加载
 const Home = (props) => (
@@ -108,6 +109,7 @@ class Routes extends React.Component{
                                 <Route  exact path="/ui/counter" component={Counter} />
                                 <Route  exact path="/ui/weather" component={Weather} />
                                 <Route  path="/ui/articles" component={Articles} />
+                                <Route  path="/ui/address" component={Address} />
                                 <Redirect from='*' to='/404' /> 
                             </Switch>
                         </App>                   

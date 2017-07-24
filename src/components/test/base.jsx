@@ -4,6 +4,14 @@ import { Link,Route,withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class Base extends React.Component{
+    constructor(){
+         super()
+    }
+
+    componentWillMount(){
+
+    }
+
     
     render(){
         return(
