@@ -8,7 +8,7 @@ import Bundle from './Bundle'
 import App from './pages/App';
 //import { Articles }  from './pages/Articles'
 import store from './Store';
-import Address   from './pages/Address'
+//import Address   from './pages/Address'
 
 //异步页面，代码分割，按需加载
 const Home = (props) => (
@@ -93,6 +93,16 @@ class Articles extends React.Component{
     }
 }
 
+const Address = (props) => (
+    <Bundle  load={(cb) => {
+        require.ensure([], require => {
+            cb(require('./pages/Address'));
+        },'Address');
+    }}>
+        {(Address) => <Address {...props}/>}
+    </Bundle>
+)
+
 
 class Routes extends React.Component{ 
     componentDidUpdate(){
@@ -103,6 +113,7 @@ class Routes extends React.Component{
                 <div>
                         <App>
                             <Switch>
+                                <Route  exact path="/hyihong.github.io/leelenToShow" component={Home} />
                                 <Route  exact path="/" component={Home} />
                                 <Route  exact path="/home" component={Home} />
                                 <Route  exact path="/ui/about" component={About} />
@@ -110,7 +121,7 @@ class Routes extends React.Component{
                                 <Route  exact path="/ui/weather" component={Weather} />
                                 <Route  path="/ui/articles" component={Articles} />
                                 <Route  path="/ui/address" component={Address} />
-                                <Redirect from='*' to='/404' /> 
+                                <Redirect from='*' to='/404' />  
                             </Switch>
                         </App>                   
                 </div>

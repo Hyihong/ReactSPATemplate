@@ -4,33 +4,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators} from 'redux'
 import { increment,decrement} from './actions'
 import { Cascader } from 'antd';
+import { mapChinaDivisionJson } from "../../tools/mapChinaDivisionJson" 
+import divisionJson from '../../DB/address3.json'
 
-const options = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
+const options = new mapChinaDivisionJson( divisionJson ) ;
 
-function onChange(value) {
-  console.log(value);
+function onChange(value, selectedOptions) {
+   console.log(value);
+   console.log(selectedOptions);
 }
 
 class ChinaDivision extends React.Component{
@@ -39,15 +20,13 @@ class ChinaDivision extends React.Component{
     }
 
     componentWillMount(){
-        //  fetch("../../DB/address3.json").then( () => {
-        //      console.log(1)
-        //  })
+     
     }
 
     
     render(){
         return(
-           <Cascader options={options} onChange={onChange} placeholder="请选择城市" />
+           <Cascader options={options} onChange={onChange} placeholder="请选择城市" style={{width:'300px'}} />
         )
     }
 }
