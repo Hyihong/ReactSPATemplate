@@ -49,6 +49,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
     
     fs.emptyDirSync(paths.appBuild);//删除文件夹下的文件，但是保存目录 
     copyPublicFolder();// 复制public文件夹到输出文件中
+
     return build(previousFileSizes); // 开始用webpack进行编译打包
   })
   .then(
@@ -60,6 +61,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
         console.log( 'To ignore, add ' + chalk.cyan('// eslint-disable-next-line') + ' to the line before.\n' );
       } else {
         console.log(chalk.green('编译成功!\n'));
+        
+
       }
 
       console.log( chalk.magenta('gzip后文件大小:') );
@@ -85,6 +88,8 @@ measureFileSizesBeforeBuild(paths.appBuild)
         buildFolder,
         useYarn
       );
+       //console.log(chalk.green('复制build整个目录到F：//leelenToShow,用于在github上部署!\n'));
+       //fs.copySync('./build', '../../leelenToShow')
     },
 
     err => {
