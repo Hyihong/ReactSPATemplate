@@ -78,6 +78,9 @@ module.exports = function(proxy, allowedHost) {
     },
     public: allowedHost,
     proxy,
+    headers: {
+       "Access-Control-Allow-Origin": "*"
+    },
     setup(app) {
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
