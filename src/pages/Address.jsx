@@ -8,8 +8,7 @@ const { Content } = Layout ;
 
  class Address extends React.Component{
       componentWillMount(){
-         
-
+          document.title="地址"
       }
       render(){
            

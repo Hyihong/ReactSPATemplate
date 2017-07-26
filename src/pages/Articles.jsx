@@ -27,11 +27,12 @@ class AddPropsRoute extends React.Component{
 
 class Articles extends React.Component{
     componentWillUpdate(nextProps){
-        
+       
     }
 
 
      componentWillMount(){
+        document.title="列表"
         this.previousLocation = this.props.previousLocation ? this.props.previousLocation : null ;
     }
 
@@ -43,7 +44,7 @@ class Articles extends React.Component{
            <Switch>
                 <AddPropsRoute  exact path={ match.url }  component={ArticlesList} previousLocation={this.previousLocation}></AddPropsRoute>
                 <Route  exact path= { `${match.url}/:id`} component={ArticleItem}/>
-                <Redirect from='*' to='/404' /> 
+                <Redirect from='*' to='/404' />  
           </Switch> 
         </div>
       );

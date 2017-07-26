@@ -4,6 +4,10 @@ class Home extends React.Component {
       console.log(1)
    }
 
+   componentWillMount(){
+     
+   }
+
   render(){
     return (
       <div > 
