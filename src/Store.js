@@ -1,5 +1,6 @@
 import {createStore, combineReducers, compose,  applyMiddleware} from 'redux';
 import { routerReducer } from 'react-router-redux'
+import Perf from 'react-addons-perf' ;
 import { reducer as sharedReducer } from './components/shared'
 import { reducer as weatherReducer } from './components/weather'
 import { reducer as counterReducer } from './components/counter'
@@ -8,6 +9,11 @@ import resetEnhancer from './middleWare/reset.js'
 import promise from './middleWare/promise' //中间件
 
 const win = window;
+
+if (process.env.NODE_ENV !== 'production') {
+    win.Perf = Perf ;
+}
+
 
 const originalReducers = {
     routing: routerReducer,
