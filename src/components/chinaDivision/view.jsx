@@ -10,8 +10,7 @@ import divisionJson from '../../DB/address3.json'
 const options = new mapChinaDivisionJson( divisionJson ) ;
 
 function onChange(value, selectedOptions) {
-   console.log(value);
-   console.log(selectedOptions);
+  
 }
 
 class ChinaDivision extends React.Component{
