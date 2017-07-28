@@ -1,4 +1,4 @@
-import { CHANGEMENU ,MENUITEMCLICK,INITIALIZE} from './actionTypes.js';
+import { CHANGEMENU ,MENUITEMCLICK,INITIALIZE,LOGINOUT } from './actionTypes.js';
 const initState = {
       current: 'home',
       openKeys: [],
