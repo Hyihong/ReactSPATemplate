@@ -1,14 +1,13 @@
 import React from 'react';
 import {Route,Switch ,Redirect,Link,withRouter} from 'react-router-dom';
 import { combineReducers} from 'redux';
-
-import Bundle from './Bundle'
+import { LoginRoute,Bundle }from './components/functional'
 
 //同步页面
-import App from './pages/App';
-//import { Articles }  from './pages/Articles'
+import Container from './pages/Container';
 import store from './Store';
 //import Address   from './pages/Address'
+
 
 //异步页面，代码分割，按需加载
 const Home = (props) => (
@@ -104,14 +103,12 @@ const Address = (props) => (
 )
 
 
-class Routes extends React.Component{ 
-    componentDidUpdate(){
-        
-    }
+
+class App extends React.Component{ 
     render(){
         return(
-                <div>
-                        <App>
+                <div>   
+                        <Container >
                             <Switch>
                                 <Route  exact path="/hyihong.github.io/leelenToShow" component={Home} />
                                 <Route  exact path="/" component={Home} />
@@ -123,24 +120,12 @@ class Routes extends React.Component{
                                 <Route  path="/ui/address" component={Address} />
                                 <Redirect from='*' to='/404' />  
                             </Switch>
-                        </App>                   
+                        </Container >
                 </div>
         )
     }
 };
 
-
-  
-
-
-export default Routes;
+export default App;
 
 
- {/* const state = store.getState();
-                    store.reset( combineReducers({
-                            ...store._reducers,
-                            articles: reducer
-                        }), { 
-                            ...state,
-                            [stateKey]:{status:'loading'}
-                    })    */}
