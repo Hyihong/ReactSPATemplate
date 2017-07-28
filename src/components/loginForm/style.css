@@ -1,0 +1,52 @@
+.containter,.bg,.loginBox{
+    position:absolute;
+    width:100%;
+    height:100%;
+}
+
+ .loginPanel{
+    position:absolute;width:100%;height:100%;padding:10px;background:#233850;opacity:0.4;z-index:3;border-radius:2px
+}  
+
+.bg{
+    background-color: #159957;
+    background-image:linear-gradient(120deg, #155799, #159957);
+    background-image:url("../../assets/images/bg.jpg");
+    background-size: cover; 
+    -webkit-filter: blur(3px);
+    filter: blur(3px); 
+    z-index:0
+}
+
+.loginFrom input {
+    background:transparent;
+    color:#fff;
+    border-color:#fff
+}
+
+.loginFrom input::selection{background:#233850; color:white;}  
+
+.loginFrom button{
+    width:100%;
+    background-color:#fff;
+    border-color:#fff;
+    color:#a18d6c
+}
+
+.loginFrom .ant-input:hover , .loginFrom .ant-input:focus{
+    border-color:#fff;
+    box-shadow: 0 0 2px #fff
+}
+
+.loginFrom .ant-btn-primary:hover , .loginFrom .ant-btn-primary:focus{
+    opacity: 0.8;
+    background-color:#fff;
+    border-color:#fff;
+    color:#a18d6c
+}
+
+.site{
+    margin-right:20px;
+    font-size: 40px ;
+    color: #fff;
+}
