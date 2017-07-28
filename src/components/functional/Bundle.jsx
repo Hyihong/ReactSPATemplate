@@ -2,7 +2,6 @@
 //异步加载的包装组件Bundle,Bundle的主要功能就是接收一个组件异步加载的方法(load)，并返回相应的react组件
 
 import  { Component } from 'react';
-import {withRouter} from 'react-router-dom'
 export default class Bundle extends Component {
     constructor(props) {
         super(props);
