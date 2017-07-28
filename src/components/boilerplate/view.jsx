@@ -27,4 +27,14 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
     onDecrement: decrement
 }, dispatch);
 
+//或者
+// const mapDispatchToProps = (dispatch) => ({
+//   fetchWeather: (cityCode) => {
+//      dispatch(fetchWeather(cityCode));
+//   },
+//   resetReducer :() =>{
+        //dispatch(decrement());
+//   }
+// });
+
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
