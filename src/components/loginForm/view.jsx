@@ -2,12 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom' ;
-import { fakeLogin } from './actions';
+import { fakeLogin,loginReset } from './actions';
 import './style.css'
 
 
-import { Form, Icon, Input, Button, Checkbox,Row,Col } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Row,Col,Modal } from 'antd';
 const FormItem = Form.Item;
+
 
 export const stateKey = 'login';
 
@@ -24,7 +25,26 @@ class LoginForm extends React.Component {
     
     hanldeValidateLogon =()=>{
         const { getFieldValue } = this.props.form;
+       
         this.props.onLoginin()
+    }
+
+    componentWillReceiveProps( nextProps ){
+        const that = this ;
+        if(nextProps.status === 'failure' ){
+             Modal.error({
+                title: "登入失败",
+                okText:"确认",
+                content: (
+                <div>
+                    <p>用户名或密码错误,请重新输入</p>
+                </div>
+                ),
+                onOk() {
+                    that.props.onLoginReset()
+                },
+            });
+        }
     }
 
     render(){
@@ -87,7 +107,7 @@ class LoginForm extends React.Component {
                                                     
                                                     <Button type="primary" htmlType="submit"  loading={this.props.isLoading}  disabled = { isFieldsHasErrors }  onClick ={ this.hanldeValidateLogon }>
                                                           {
-                                                              this.props.isLoading ? "假装登录中..." : "登入系统"
+                                                              this.props.isLoading ? "模拟登录中..." : "登入系统"
                                                           }
                                                     </Button>
                                                 </Form>
@@ -96,6 +116,8 @@ class LoginForm extends React.Component {
                                     </Row>
                                 </Col>
                             </Row>
+                        
+                        
                         </div>
                     </div>
                 );
@@ -119,6 +141,7 @@ const mapStateToProps = (state) =>{
      return {
         hasLogin: state.login.hasLogin,
         isLoading: state.login.isLoading,
+        status: state.login.status,
     };
 }
 
@@ -126,6 +149,9 @@ const mapDispatchToState = (dispatch) =>{
     return({
         onLoginin : () =>{
             dispatch( fakeLogin() )
+        },
+        onLoginReset :() =>{
+            dispatch( loginReset() )
         }
     })
 }

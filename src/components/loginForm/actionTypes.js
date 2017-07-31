@@ -5,5 +5,6 @@
 export const LOGIN_START = 'LOGIN/LOGIN_START';     // 开始登入
 export const LOGIN_SUCCESS = 'LOGIN/LOGIN_SUCCESS'; // 登入成功
 export const LOGIN_FAILURE = 'LOGIN/LOGIN_FAILURE'; // 登入失败
+export const LOGIN_RESET ='LOGIN/LOGIN_RESET' //登入重置
 
 export const LOGOUT = 'LOGOUT/LOGOUT'; //登出

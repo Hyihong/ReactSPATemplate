@@ -58,4 +58,7 @@
 .anticon-loading:before{
     color:black
 }
+.ant-modal{
+    top:300px
+}
 
