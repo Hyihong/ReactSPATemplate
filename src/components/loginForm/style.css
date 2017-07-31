@@ -9,8 +9,8 @@
 }  
 
 .bg{
-    background-color: #159957;
-    background-image:linear-gradient(120deg, #155799, #159957);
+    background-color: #999;
+    /* background-image:linear-gradient(120deg, #155799, #159957); */
     background-image:url("../../assets/images/bg.jpg");
     background-size: cover; 
     -webkit-filter: blur(3px);
@@ -26,23 +26,27 @@
 
 .loginFrom input::selection{background:#233850; color:white;}  
 
-.loginFrom button{
-    width:100%;
-    background-color:#fff;
-    border-color:#fff;
-    color:#a18d6c
-}
 
 .loginFrom .ant-input:hover , .loginFrom .ant-input:focus{
     border-color:#fff;
     box-shadow: 0 0 2px #fff
 }
-
+.loginFrom .ant-btn-primary{
+    width:100%;
+    background-color:#fff;
+    border-color:#fff;
+    color:#1B2C3F
+}
 .loginFrom .ant-btn-primary:hover , .loginFrom .ant-btn-primary:focus{
     opacity: 0.8;
     background-color:#fff;
     border-color:#fff;
+}
+.loginFrom .ant-btn-primary[disabled]{
     color:#a18d6c
+}
+.loginFrom .ant-btn-primary[disabled]:hover{
+    opacity:1;
 }
 
 .site{
@@ -50,3 +54,8 @@
     font-size: 40px ;
     color: #fff;
 }
+
+.anticon-loading:before{
+    color:black
+}
+
