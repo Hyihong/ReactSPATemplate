@@ -7,7 +7,8 @@ import { reducer as counterReducer } from './components/counter'
 import { reducer as articlesReducer } from './components/articles'
 import { reducer as loginReducer } from './components/loginForm'
 import resetEnhancer from './middleWare/reset.js' 
-import promise from './middleWare/promise' //中间件
+//中间件
+import promise from './middleWare/promise' 
 
 const win = window;
 

@@ -6,7 +6,7 @@ export default function promiseMiddleware( {dispatch} ) {
       return function (next){
           return function(action){
               const { types,promise,...rest } = action;
-
+              
               if( !isPromise(promise) || !(action.types && action.types.length === 3)){
                   return next(action)
               }
