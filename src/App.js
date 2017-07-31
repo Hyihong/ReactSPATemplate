@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route,Switch ,Redirect,Link,withRouter} from 'react-router-dom';
 import { combineReducers} from 'redux';
-import { LoginRoute,Bundle }from './components/functional'
+import { Bundle }from './components/functional'
 
 //同步页面
 import Container from './pages/Container';

@@ -7,19 +7,18 @@ import NotFonund from './pages/404';
 import App from './App.js';
 import store from './Store'
 import './cover.less'
-import Login   from './pages/Login'
+import { LoginRoute,Bundle }from './components/functional'
 
-import { LoginRoute }from './components/functional'
-
-// const Login = (props) => (
-//     <Bundle  load={(cb) => {
-//         require.ensure([], require => {
-//             cb(require('./pages/Login'));
-//         },'Login');
-//     }}>
-//         {(Login) => <Address {...Login}/>}
-//     </Bundle>
-// )
+//Login按需加载
+const Login = (props) => (
+    <Bundle  load={(cb) => {
+        require.ensure([], require => {
+            cb(require('./pages/Login'));
+        },'Login');
+    }}>
+        {(Login) => <Login {...Login}/>}
+    </Bundle>
+)
 
 ReactDOM.render(
     <Provider store={store}>
