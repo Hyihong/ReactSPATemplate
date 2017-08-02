@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter as Router ,Route,Switch,Redirect } from 'react-router-dom';
+import { BrowserRouter as Router ,Route,Switch,Redirect } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import NotFonund from './pages/404';
 
@@ -25,8 +25,8 @@ ReactDOM.render(
        <Router>
            <div>
                 <Switch>
-                    <Route path="/login" component = { Login }/> 
-                    <Route path="/404" component={NotFonund} />
+                    <Route exact path="/login" component = { Login }/> 
+                    <Route exact path="/404" component={NotFonund} />
                     <LoginRoute  path="/" component={ App }/> 
                 </Switch>
             </div>
