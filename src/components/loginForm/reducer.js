@@ -31,7 +31,6 @@ switch (action.type) {
             status:'failure',
             isLoading : false,
             hasLogin:action.result.hasLogin,
-            localStorage:action.result
         };
     }
     case LOGIN_RESET:{
@@ -45,7 +44,7 @@ switch (action.type) {
         return {
             ...state,
             status:'',
-            hasLogin:false
+            hasLogin: action.hasLogin
         };
     default:
         return state

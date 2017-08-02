@@ -8,25 +8,31 @@ const setLoginStatus = actions.setLoginStatus;
 //根据登录状态判断路由
  class LoginRoute extends React.Component {
    componentWillMount(){
-       let _hasLogin =   localStorage.getItem('hasLogin');
-       if( _hasLogin !== 'false' ){
-            //读取到本地数据，为已登录状态
-            this.props.setLoginStatus( _hasLogin )
+
+       let _hasLogin =  Number( localStorage.getItem('hasLogin'));
+    
+       if( _hasLogin) {
+            //读取到本地数据，为已登录状态,讲此状态存储到redux上
+             this.props.setLoginStatus( _hasLogin )
        }
    }
+
    render(){
-     const { component:Component,hasLogin,...rest} = this.props
-     return (
-          <Route {...rest} render={props => (
-            hasLogin ? (
-              <Component {...props}/>
-            ) : (
-              <Redirect to={{
-                 pathname: '/login',
-              }}/>
-            )
-          )}/>
-     )
+     const { component:App,hasLogin,...rest} = this.props;
+     let _hasLogin =  Number( localStorage.getItem('hasLogin'));
+     
+      return (
+            <Route {...rest} render={props => (
+              _hasLogin ? (
+                <App {...props}/>
+              ) : (
+                <Redirect to={{
+                   pathname: '/login',
+                }}/>
+              )
+            )}/>
+       )
+
    }
  }
 

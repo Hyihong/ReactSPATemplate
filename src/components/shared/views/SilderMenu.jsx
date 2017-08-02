@@ -13,13 +13,17 @@ class SilderMenu extends React.Component{
     componentWillMount(){
         const {location,onInitializeMenu} = this.props;
         //根据一级，二级路由，判断菜单展开和选中状态 
-       
-        console.log( location )
         const _location = location.pathname.split('/');
         const _locationLen = _location.length;
         let initCurrent ;
+        
         if( _locationLen <=2 ){
-            initCurrent = location.pathname;
+            if(location.pathname==="/"){
+                 initCurrent = "/home";
+            }else{
+               initCurrent = location.pathname;
+            }
+            
         }else{
             initCurrent = `/${_location[1]}/${ _location[2]}`
         }

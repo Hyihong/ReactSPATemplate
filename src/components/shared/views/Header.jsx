@@ -12,14 +12,10 @@ import { actions } from '../../loginForm';
 const { Item, SubMenu } = Menu;
 const { Header } = Layout  ;
 const logout = actions.logout ;
+const setLoginStatus = actions.setLoginStatus ;
 
 
 class App extends React.Component{
-
-    componentWillMount(){
-       
-    }
-
     screenFull = () => {
          
         if (screenFull.enabled) {
@@ -28,9 +24,9 @@ class App extends React.Component{
     }
 
     logout =()=>{
-        localStorage.setItem("hasLogin",false);
-        const { logout } = this.props ;
-        logout()
+        localStorage.setItem("hasLogin",0)
+        const { setLoginStatus } = this.props ;
+        setLoginStatus( 0 )
     }
 
     render(){
@@ -65,10 +61,10 @@ class App extends React.Component{
 
 const mapDispatchToState = (dispatch) =>{
     return({
-        logout : () =>{
-            dispatch( logout() )
-        }
-    })
+          setLoginStatus : (hasLog)=>{
+              dispatch( setLoginStatus(hasLog) )
+          }
+        })
 }
 
 export default connect(null,mapDispatchToState)(App)
