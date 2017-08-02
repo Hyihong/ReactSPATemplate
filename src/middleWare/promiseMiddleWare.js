@@ -6,7 +6,7 @@ export default function promiseMiddleware( {dispatch} ) {
       return function (next){
           return function(action){
               const { types,promise,...rest } = action;
-              
+
               if( !isPromise(promise) || !(action.types && action.types.length === 3)){
                   return next(action)
               }
@@ -15,8 +15,9 @@ export default function promiseMiddleware( {dispatch} ) {
 
                dispatch({...rest,type:pending});
                
+               
                return action.promise.then( 
-                   result => { 
+                    result => { 
                        dispatch({...rest,result,type:done})
                     },
                    error => dispatch({...rest,error,type:fail})
