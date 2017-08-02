@@ -105,6 +105,9 @@ const Address = (props) => (
 
 
 class App extends React.Component{ 
+    componentWillMount(){
+   
+    }
     render(){
         return(
                 <div>   
