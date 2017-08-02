@@ -8,7 +8,8 @@ import { reducer as articlesReducer } from './components/articles'
 import { reducer as loginReducer } from './components/loginForm'
 import resetEnhancer from './middleWare/reset.js' 
 //中间件
-import promise from './middleWare/promise' 
+import promise from './middleWare/promiseMiddleWare' 
+import setItem from './middleWare/setLocalStorageMiddleWare' 
 
 const win = window;
 
@@ -27,7 +28,7 @@ const originalReducers = {
 }
 
 const reducer =  combineReducers(originalReducers)
-const middleWare = [promise]
+const middleWare = [promise,setItem]
 
 const storeEnhancers = compose(
   applyMiddleware(...middleWare),
