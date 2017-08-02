@@ -5,9 +5,9 @@ import React from 'react'
 import { Layout,Menu,Icon} from 'antd';
 import { connect } from 'react-redux';
 import screenFull from "screenfull" ;
-import logo from '../../assets/images/logo.png'
-import avatar from '../../assets/images/t1.jpg'
-import { actions } from '../loginForm';
+import logo from '../../../assets/images/logo.png'
+import avatar from '../../../assets/images/t1.jpg'
+import { actions } from '../../loginForm';
 
 const { Item, SubMenu } = Menu;
 const { Header } = Layout  ;

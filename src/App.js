@@ -4,7 +4,7 @@ import { combineReducers} from 'redux';
 import { Bundle }from './components/functional'
 
 //同步页面
-import Container from './pages/Container';
+import { view as Container } from './components/shared';
 import store from './Store';
 //import Address   from './pages/Address'
 

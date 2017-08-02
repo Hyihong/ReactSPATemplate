@@ -1,7 +1,7 @@
 import React from 'react';
 
-import  Header  from '../components/shared/Header';
-import  SilderMenu from '../components/shared/SilderMenu';
+import  Header  from './Header';
+import  SilderMenu from './SilderMenu';
 import { Layout} from 'antd';
 const { Content } = Layout ;
 
@@ -11,8 +11,8 @@ const { Content } = Layout ;
       render(){
            
         return(
-          <div>
-            <Layout style={{width:"100%","minWidth":"1200px",height:'100%',position:'absolute'}} >
+          <div >
+            <Layout className="app-context-container" style={{width:"100%","minWidth":"1200px",height:'100%',position:'absolute'}} >
                 <Header></Header>
                 <Layout style={{width:"100%","minWidth":"1200px",height:'100%'}} className="ant-layout-has-sider">
                     <SilderMenu current= {this.props.current}  openKeys= {this.props.openKeys}></SilderMenu>

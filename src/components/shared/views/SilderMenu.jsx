@@ -5,17 +5,16 @@ import React from 'react'
 import { Menu,Icon } from 'antd';
 import { connect } from 'react-redux';
 import { Link,withRouter} from 'react-router-dom';
-import { changeMenu, menuitemclick,initialize} from './actions'
+import { changeMenu, menuitemclick,initialize} from '../actions'
 
 const { Item, SubMenu } = Menu;
-//const { Sider } = Layout
-
-export const stateKey = 'silderMenu';
 
 class SilderMenu extends React.Component{
     componentWillMount(){
         const {location,onInitializeMenu} = this.props;
-        //根据一级，二级路由，判断菜单展开和选中状态
+        //根据一级，二级路由，判断菜单展开和选中状态 
+       
+        console.log( location )
         const _location = location.pathname.split('/');
         const _locationLen = _location.length;
         let initCurrent ;
@@ -25,11 +24,13 @@ class SilderMenu extends React.Component{
             initCurrent = `/${_location[1]}/${ _location[2]}`
         }
         const openKeys = [ _location[1] ]
+
         onInitializeMenu(initCurrent,openKeys ) 
 
     }
 
     componentWillReceiveProps(){
+
     }
   
     handleMenuClick = (e) =>{
