@@ -25,12 +25,12 @@ class LoginForm extends React.Component {
     
     hanldeValidateLogon =()=>{
         const { getFieldValue } = this.props.form;
-       
-        this.props.onLoginin()
+        this.props.onLoginin();
     }
 
     componentWillReceiveProps( nextProps ){
         const that = this ;
+        
         if(nextProps.status === 'failure' ){
              Modal.error({
                 title: "登入失败",
