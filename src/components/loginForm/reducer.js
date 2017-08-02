@@ -1,10 +1,16 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_RESET ,LOGOUT} from './actionTypes.js';
+import {LOGIN_SET_STATUS,LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_RESET ,LOGOUT} from './actionTypes.js';
 
 // state ： 初始数据，Type : any 
-const initState ={ hasLogin : false ,isLoading : false }
+const initState ={ isLoading : false }
 
 export default (state = initState, action) => {
 switch (action.type) {
+    case LOGIN_SET_STATUS :{
+        return {
+            ...state,
+            hasLogin:action.hasLogin
+        }
+    }
     case LOGIN_START:
         return {
             ...state,
@@ -16,7 +22,7 @@ switch (action.type) {
             ...state,
             status:'success',
             isLoading : false,
-            hasLogin:true
+            hasLogin:action.result.hasLogin,
         };
     }
     case LOGIN_FAILURE:{
@@ -24,7 +30,8 @@ switch (action.type) {
             ...state,
             status:'failure',
             isLoading : false,
-            hasLogin:false
+            hasLogin:action.result.hasLogin,
+            localStorage:action.result
         };
     }
     case LOGIN_RESET:{

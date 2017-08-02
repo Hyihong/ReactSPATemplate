@@ -5,13 +5,13 @@ import React from 'react'
 import { Layout,Menu,Icon} from 'antd';
 import { connect } from 'react-redux';
 import screenFull from "screenfull" ;
-import logo from '../../assets/images/t1.jpg'
+import logo from '../../assets/images/logo.png'
 import avatar from '../../assets/images/t1.jpg'
 import { actions } from '../loginForm';
 
 const { Item, SubMenu } = Menu;
 const { Header } = Layout  ;
-const loginout = actions.loginout ;
+const logout = actions.logout ;
 
 
 class App extends React.Component{
@@ -21,20 +21,26 @@ class App extends React.Component{
     }
 
     screenFull = () => {
-        console.log('全屏')
+         
         if (screenFull.enabled) {
             screenFull.request();
         }
     }
 
+    logout =()=>{
+        localStorage.setItem("hasLogin",false);
+        const { logout } = this.props ;
+        logout()
+    }
+
     render(){
-        const { loginout } = this.props ;
+       
         return (
                <Header style={{height:'56px'}}>
                    <div className="logo"><img src={logo} alt="logo"/></div>
                    <div style={{float:"right",height:"56px"}}>
                         <div className="avatar"><img src={avatar} alt="头像" /></div>
-                        <div className="exit" onClick={ loginout }><Icon type="poweroff" />退出</div>
+                        <div className="exit" onClick={ this.logout }><Icon type="poweroff" />退出</div>
                     </div>
                    <Menu
                         theme="dark"
@@ -59,8 +65,8 @@ class App extends React.Component{
 
 const mapDispatchToState = (dispatch) =>{
     return({
-        loginout : () =>{
-            dispatch( loginout() )
+        logout : () =>{
+            dispatch( logout() )
         }
     })
 }
